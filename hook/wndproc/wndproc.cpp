@@ -1,6 +1,5 @@
 #include "wndproc.h"
 #include "../../menu/gui/menu.h"
-#include "../dx9/dx9.h"
 
 WNDPROC windowProc;
 

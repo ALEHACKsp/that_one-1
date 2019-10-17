@@ -1,6 +1,5 @@
 #include "util.h"
 #include "../signature/csignature.h"
-#include <vector>
 
 namespace Util {
  float Distance( const Vector& vOrigin, const Vector& vLocalOrigin ) {

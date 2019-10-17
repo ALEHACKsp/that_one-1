@@ -7,12 +7,6 @@ bool checkExists( std::string file );
 void SaveToJson();
 void LoadFromJson();
 
-static bool detach = false;
-
-inline void detach_start() {
- detach = true;
-}
-
 struct CGlobalVariables {
  int backtrack_tick = 0;
  int backtrack_arr = 0;
@@ -315,7 +309,6 @@ struct CGlobalVariables {
  Checkbox Thirdperson_scoped{ "Draw scoped player" };
  Functionbox Dump_classId{ "Dump classId", Dumps::dumpClassIds };
  Functionbox Dump_netvar{ "Dump netvar", Dumps::dumpNetvars };
- Functionbox Detach{ "Detach", detach_start };
 
  Tab Testing{ "Testing", {
    &Sv_cheat,
@@ -323,7 +316,6 @@ struct CGlobalVariables {
    &Thirdperson_scoped,
    &Dump_classId,
    &Dump_netvar,
-   &Detach
    }
  };
 

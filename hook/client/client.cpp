@@ -92,9 +92,6 @@ void __fastcall Hooked_FrameStageNotifyThink( PVOID CHLClient, void* _this, Clie
       case classId::CTFPlayer:
        {
         if( Global.ESP_player.value == 2 ) {
-         //if( !pEntity->HasGlowEffect() ) {
-         //	pEntity->registerGlowObject( Util::team_color( pLocal, pEntity ), true, true );
-         //}
          pEntity->SetGlowEnabled( valid && team );
         }
 
@@ -143,17 +140,6 @@ void __fastcall Hooked_FrameStageNotifyThink( PVOID CHLClient, void* _this, Clie
       Color color;
       switch( (classId)pEntity->GetClassId() ) {
        case classId::CTFPlayer:
-        {
-         if( Global.ESP_player.value == 2 ) {
-          color = Util::team_color( pLocal, pEntity );
-          GlowObject.m_vGlowColor = color.rgb();
-          GlowObject.m_flGlowAlpha = color[3] / 255.0f;
-         } else {
-          Int::GlowManager->m_GlowObjectDefinitions.Remove( i );
-         }
-         break;
-        }
-
        case classId::CObjectSentrygun:
        case classId::CObjectDispenser:
        case classId::CObjectTeleporter:

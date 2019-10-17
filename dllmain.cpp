@@ -3,10 +3,8 @@
 #include "hook/panel/panels.h"
 #include "hook/dx9/dx9.h"
 #include "hook/wndproc/wndproc.h"
-#include "menu/gui/menu.h"
 #include "hack/event/event.h"
 #include "sdk/cmat/keyvalues.h"
-#include <thread>
 
 #define Interface(dll) (CreateInterfaceFn)(GetProcAddress(Signatures::GetModuleHandleSafe( dll ), "CreateInterface"))
 
@@ -87,34 +85,17 @@ DWORD WINAPI dwMainThread( LPVOID lpArguments ) {
   }
  }
 
- windowProc = (WNDPROC)( SetWindowLongPtr( window, GWLP_WNDPROC, (LONG_PTR)( &Hooked_WndProc ) ) );
+ windowProc = (WNDPROC)( SetWindowLongW( window, GWLP_WNDPROC, (LONG_PTR)( &Hooked_WndProc ) ) );
 
  return 0;
 }
 
-void WINAPI detach_loop( HMODULE hInstance ) {
- while( !detach ) {
-  std::this_thread::sleep_for( std::chrono::milliseconds( 200 ) );
- }
-
- Int::Panels->SetMouseInputEnabled( FocusOverlayPanel, false );
-
- //wndproc undo
- SetWindowLongW( window, GWLP_WNDPROC, reinterpret_cast<LONG_PTR>( windowProc ) );
-
- FreeLibraryAndExitThread( hInstance, 0 );
-}
-
-
-BOOL APIENTRY DllMain( HMODULE hInstance, DWORD dwReason, LPVOID lpReserved ) {
+int __stdcall DllMain( HMODULE hInstance, DWORD dwReason, LPVOID lpReserved ) {
  if( dwReason == DLL_PROCESS_ATTACH ) {
   if( HANDLE handle = CreateThread( nullptr, 0, (LPTHREAD_START_ROUTINE)( dwMainThread ), nullptr, 0, nullptr ) ) {
    CloseHandle( handle );
   }
-  if( HANDLE handle = CreateThread( nullptr, 0, (LPTHREAD_START_ROUTINE)( detach_loop ), hInstance, 0, nullptr ) ) {
-   CloseHandle( handle );
-  }
  }
 
- return TRUE;
+ return 1;
 }
