@@ -1,6 +1,6 @@
 #pragma once
 
 namespace Dumps {
-	void dumpClassIds();
-	void dumpNetvars();
+ void dumpClassIds();
+ void dumpNetvars();
 }

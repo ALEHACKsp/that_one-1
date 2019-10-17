@@ -8,9 +8,9 @@ extern int lastincomingsequencenumber;
 
 namespace Latency {
 
-	void UpdateIncomingSequences();
+ void UpdateIncomingSequences();
 
-	void ClearIncomingSequences();
+ void ClearIncomingSequences();
 
-	void AddLatencyToNetchan( CNetChan* netchan, float Latency );
+ void AddLatencyToNetchan( CNetChan* netchan, float Latency );
 }
