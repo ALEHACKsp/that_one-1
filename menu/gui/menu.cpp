@@ -4,7 +4,7 @@ Menu gMenu;
 CKey gKey;
 
 // - Feel free to use whatever default width you want
-#define GROUP_WIDTH 180
+constexpr int GROUP_WIDTH = 180;
 
 void Menu::CreateGUI() {
   Tabs = Global.tf2;
@@ -22,13 +22,12 @@ void Menu::CreateGUI() {
     }
 
     SaveToJson();
-    MessageBoxA( nullptr, "An update changed the config\r\nfind your old config renamed as that_one.backup", "FATAL ERROR", MB_ICONERROR | MB_TOPMOST );
+    MessageBoxW( nullptr, L"An update changed the config\r\nfind your old config renamed as that_one.backup", L"FATAL ERROR", MB_ICONERROR | MB_TOPMOST );
   }
 }
 
-#define TAB_WIDTH 150
-#define MENU_TOPBAR 30
-//#define MARGIN 4
+constexpr int TAB_WIDTH = 150;
+constexpr int MENU_TOPBAR = 30;
 void Menu::Draw() {
 #pragma region Handle input
 

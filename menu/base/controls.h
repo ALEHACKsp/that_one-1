@@ -3,8 +3,8 @@
 #include "keyenum.h"
 #include <Windows.h>
 #include <vector>
-#define CONTROL_WIDTH 100
-#define SPACING 10
+constexpr int CONTROL_WIDTH = 100;
+constexpr int SPACING = 10;
 
 void InitTextures();
 
@@ -126,7 +126,7 @@ public:
   }
 };
 
-#define GetTabHeight 30
+constexpr int GetTabHeight = 30;
 
 class Tab : public BaseControl {
 public:
@@ -197,7 +197,7 @@ public:
     flags = scale_width;
   }
 };
-#define comment -1
+constexpr int comment = -1;
 class Checkbox : public BaseControl {
 public:
   int value;

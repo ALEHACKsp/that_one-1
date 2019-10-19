@@ -19,7 +19,7 @@ enum FontFlags {
   FONTFLAG_BITMAP = 0x800,
 };
 
-#define ESP_HEIGHT 14
+constexpr int ESP_HEIGHT = 14;
 class CFonts {
 public:
   void Initialize();

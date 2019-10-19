@@ -1,7 +1,7 @@
 #include "backtrack.h"
 #include "../../tools/util/util.h"
 std::deque<LagRecord> BacktrackData[64];
-#define BONE_USED_BY_ANYTHING   0x7FF00
+constexpr int BONE_USED_BY_ANYTHING = 0x7FF00;
 namespace Backtrack {
   void collect_tick( CBaseEntity* pLocal ) {
 
@@ -26,7 +26,7 @@ namespace Backtrack {
 
       Vector hitbox = pEntity->GetHitbox( pLocal, Global.hitbox != -1 ? Global.hitbox : 0, true );
 
-      BacktrackData[i].push_front( LagRecord{ false, pEntity->flSimulationTime(), Util::EstimateAbsVelocity( pEntity ), hitbox, pEntity->GetEyeAngles(), pEntity->GetWorldSpaceCenter() } );
+      BacktrackData[i].emplace_front( LagRecord{ false, pEntity->flSimulationTime(), Util::EstimateAbsVelocity( pEntity ), hitbox, pEntity->GetEyeAngles(), pEntity->GetWorldSpaceCenter() } );
 
       BacktrackData[i].front().valid = pEntity->SetupBones( BacktrackData[i].front().boneMatrix, 128, BONE_USED_BY_ANYTHING, Int::globals->curtime );
 

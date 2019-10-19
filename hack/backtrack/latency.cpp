@@ -16,7 +16,7 @@ namespace Latency {
 
       if( netchan->m_nInSequenceNr > lastincomingsequencenumber ) {
         lastincomingsequencenumber = netchan->m_nInSequenceNr;
-        sequences.push_front( CIncomingSequence( netchan->m_nInReliableState, netchan->m_nOutReliableState, netchan->m_nInSequenceNr, Int::globals->realtime ) );
+        sequences.emplace_front( CIncomingSequence{ netchan->m_nInReliableState, netchan->m_nOutReliableState, netchan->m_nInSequenceNr, Int::globals->realtime } );
       }
 
       if( sequences.size() > 2048 ) {

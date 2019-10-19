@@ -78,7 +78,7 @@ Color hsv2rgb( float hue, float saturation, float brightness, int alpha = 255 ) 
     );
   }
 }
-// - To do: Make this part of CDraw::Initialize instead, for the sake of simplicity
+
 void InitTextures() {
   arrow_t = TextureHolder( arrow, 8, 8 );
   arrowside_t = TextureHolder( arrowside, 8, 8 );
@@ -326,7 +326,7 @@ void Slider::HandleInput() {
 }
 
 // ===== Listbox =====
-#define TEXTH 15
+constexpr int TEXTH = 15;
 int Listbox::Draw( bool mouseOver ) {
   Color clr = mouseOver ? HTEXT : CTEXT;
   DrawManager::DrawString( x, y, clr, name, gFonts.verdana_bold );

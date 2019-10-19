@@ -3,23 +3,22 @@
 
 int DefaultStyle::ControlPanel( int x, int y, int w, int h, const char* name ) {
   DrawManager::OutlineRect( x, y, w, h, Color( 50, 50, 55 ) );
-  int txtMargin = 0;
   int textW = 0, textH = 15;
 
   if( name ) {
     Int::Surface->GetTextSize( gFonts.calibri_light_small, ToWstring( name ).c_str(), textW, textH );
   }
 
-  DrawManager::DrawRect( x + 1, y + 1, w - 2, textH + txtMargin, Color( 25 ) );
+  DrawManager::DrawRect( x + 1, y + 1, w - 2, textH, Color( 25 ) );
 
   if( name ) {
     DrawManager::DrawString( x + ( ( w / 2 ) - ( textW / 2 ) ), y, Color( 150 ), name, gFonts.calibri_light_small );
   }
 
-  DrawManager::DrawLine( x, y + textH + txtMargin, x + w, y + textH + txtMargin, Color( 50, 50, 55 ) );
-  x += 1, y += textH + txtMargin + 1, w -= 2, h -= textH + txtMargin + 2;
+  DrawManager::DrawLine( x, y + textH, x + w, y + textH, Color( 50, 50, 55 ) );
+  x += 1, y += textH + 1, w -= 2, h -= textH + 2;
   DrawManager::DrawRect( x, y, w, h, Color( 30, 30, 33 ) );
-  return textH + txtMargin + 1;
+  return textH + 1;
 }
 
 int DefaultStyle::DialogButton( int x, int y, int w, const char* text, bool mouseOver ) {
@@ -34,7 +33,7 @@ void DefaultStyle::Dialog( int x, int y, int w, int h ) {
   DrawManager::DrawRect( x + 1, y + 1, w - 2, h - 2, Color( 36, 36, 40 ) );
 }
 
-#define TOPBAR 30
+constexpr int TOPBAR = 30;
 int DefaultStyle::TopBar( int x, int y, int w, const char* title ) {
   // Dark topbar
   DrawManager::DrawRect( x, y, w, TOPBAR, Color( 20 ) );

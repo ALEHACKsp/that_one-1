@@ -2,6 +2,7 @@
 
 #include "../base/controls.h"
 #include "../style/styles.h"
+#include <memory>
 
 enum class e_mb {
   null,
@@ -48,7 +49,7 @@ public:
   void GetInput();
   void EndInput();
 
-  WindowStyle* style = new DefaultStyle();
+  std::shared_ptr<WindowStyle> style = std::make_shared<DefaultStyle>();
 
   // - Store flags for all keys.
   // - The largest integers can't hold 256 flags, so we use an array

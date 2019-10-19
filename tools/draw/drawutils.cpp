@@ -24,7 +24,7 @@ void CTextures::Initialize() {
   dark_gray = Int::Surface->CreateNewTextureID();
 }
 void CTextures::Reload() {
-  static const byte dark_gray_t[4] = { 50, 50, 50, 255 };
+  constexpr byte dark_gray_t[4] = { 50, 50, 50, 255 };
   Int::Surface->DrawSetTextureRGBA( dark_gray, dark_gray_t, 1, 1 );
 }
 

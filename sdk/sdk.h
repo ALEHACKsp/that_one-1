@@ -3056,8 +3056,8 @@ enum ObserverModes_t {
   OBS_MODE_ROAMING,		// free roaming
 };
 
-#define END_OF_FREE_LIST	-1
-#define ENTRY_IN_USE		-2
+constexpr int END_OF_FREE_LIST = -1;
+constexpr int ENTRY_IN_USE = -2;
 
 struct GlowObjectDefinition_t {
   unsigned int m_hEntity;
